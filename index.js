@@ -44,6 +44,15 @@ app.use((err,req,res,next) => {
     }
 })
 
+// 统一处理不存在的路由
+// app.all表示处理所有形式的请求
+app.all('*', (req, res) => { 
+    res.status(404).json({
+        status: 404,
+        message: '请求的资源不存在'
+    })
+})
+
 app.listen(8888, () => { 
     console.log('running....')
 })
